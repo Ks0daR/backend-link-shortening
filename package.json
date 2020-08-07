@@ -1,0 +1,32 @@
+{
+  "name": "backend-link-shortening",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "mongoose": "^5.9.27"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "server": "nodemon ./start.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ks0daR/backend-link-shortening.git"
+  },
+  "keywords": [
+    "backend",
+    "express",
+    "server"
+  ],
+  "author": "Ivan Shevchenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ks0daR/backend-link-shortening/issues"
+  },
+  "homepage": "https://github.com/Ks0daR/backend-link-shortening#readme"
+}
