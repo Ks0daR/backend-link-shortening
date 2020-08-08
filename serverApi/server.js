@@ -27,8 +27,15 @@ export class ShortLinkServer {
   }
 
   async initDbConnect() {
-   
-    await mongoose.connect(process.env.MONGO_DB_URI, {useNewUrlParser: true, useUnifiedTopology: true, });
+    try {
+      await mongoose.connect(process.env.MONGO_DB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+      console.log("Success connect to DB");
+    } catch (err) {
+      throw new Error("Error connect to db");
+    }
   }
 
   initRoutes() {
