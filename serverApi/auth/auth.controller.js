@@ -41,9 +41,41 @@ class AuthController {
     }
   }
 
+  async logInUser(req, res, next) {
+    try {
+      const { email, password } = req.body;
+
+      const user = await authModel.getUserByEmail(email);
+
+      if (!user) {
+        throw new Error("Такого пользователя не существует");
+      }
+
+      const validPwd = await this.passwordChecked(password, user.password);
+
+      if (!validPwd) {
+        throw new Error("Некорректный пароль");
+      }
+
+      console.log(user._id);
+
+      const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
+        expiresIn: "1h",
+      });
+
+      console.log(token);
+    } catch (err) {
+      next(err);
+    }
+  }
+
   async passwordHash(pwd) {
     const salt = Number(process.env.SALT_ROUNDS);
     return await bcrypt.hash(pwd, salt);
+  }
+
+  async passwordChecked(pwd, userPwd) {
+    return bcrypt.compare(pwd, userPwd);
   }
 }
 

@@ -14,4 +14,14 @@ router.post(
   authController.registerUser
 );
 
+router.post(
+  "/login",
+  [
+    check("email", "Не корректный email").isEmail(),
+    check("password", "Не корректный пароль").isLength({ min: 6 }),
+  ],
+  authController.validateCredential,
+  authController.logInUser
+);
+
 export const authRouter = router;
