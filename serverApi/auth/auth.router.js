@@ -10,7 +10,8 @@ router.post(
     check("email", "Не корректный email").isEmail(),
     check("password", "Не корректный пароль").isLength({ min: 6 }),
   ],
-  authController.validateCredential
+  authController.validateCredential,
+  authController.registerUser
 );
 
 export const authRouter = router;

@@ -7,7 +7,12 @@ const userSchema = new Schema({
   password: { type: String, required: true },
 });
 
+userSchema.statics.addNewUser = addNewUser;
 userSchema.statics.getUserByEmail = getUserByEmail;
+
+function addNewUser(user) {
+  this.create(user);
+}
 
 function getUserByEmail(email) {
   return this.findOne({ email });

@@ -1,7 +1,8 @@
-import bcrypt from "bcrypt";
+import bcrypt, { hash } from "bcrypt";
 import jwt from "jsonwebtoken";
 import { check, validationResult } from "express-validator";
 import { authModel } from "./auth.model";
+import { createControllerProxy } from "../helpers/controllerProxy";
 
 class AuthController {
   validateCredential(req, res, next) {
@@ -15,17 +16,35 @@ class AuthController {
     next();
   }
 
-  //   async registerUser(req, res, next) {
-  //     try {
-  //       const { email, password } = req.body;
+  async registerUser(req, res, next) {
+    try {
+      const { email, password } = req.body;
 
-  //       const uniqueUser = await authModel.getUserByEmail(email);
+      const uniqueUser = await authModel.getUserByEmail(email);
 
-  //       if (uniqueUser) {
-  //         throw new Error("Такой пользователь уже существует");
-  //       }
-  //     } catch (err) {}
-  //   }
+      if (uniqueUser) {
+        throw new Error("Такой пользователь уже существует");
+      }
+
+      const passwordHashed = await this.passwordHash(password);
+
+      const newUser = {
+        email,
+        password: passwordHashed,
+      };
+
+      await authModel.addNewUser(newUser);
+
+      res.status(201).json(newUser);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async passwordHash(pwd) {
+    const salt = Number(process.env.SALT_ROUNDS);
+    return await bcrypt.hash(pwd, salt);
+  }
 }
 
-export const authController = new AuthController();
+export const authController = createControllerProxy(new AuthController());
