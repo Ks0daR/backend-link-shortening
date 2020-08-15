@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import { authRouter } from "./auth/auth.router";
+import { linksRouter } from "./links/links.router";
 
 const PORT = process.env.PORT || 8080;
 
@@ -40,6 +41,7 @@ export class ShortLinkServer {
 
   initRoutes() {
     this.server.use("/auth", authRouter);
+    this.server.use("/links", linksRouter);
   }
 
   startListening() {

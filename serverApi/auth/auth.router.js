@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { authController } from "./auth.controller";
 import { check } from "express-validator";
+import { authModel } from "./auth.model";
 
 const router = Router();
 
@@ -24,6 +25,6 @@ router.post(
   authController.logInUser
 );
 
-router.put("/logout", authController.isAutorizate)
+router.put("/logout", authController.isAutorizate, authController.logOutUser);
 
 export const authRouter = router;

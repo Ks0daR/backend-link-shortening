@@ -1,6 +1,4 @@
-import mongoose from "mongoose";
-
-const Schema = mongoose.Schema;
+import { Schema, model } from "mongoose";
 
 const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
@@ -16,12 +14,12 @@ function addNewUser(user) {
   return this.create(user);
 }
 
-function getUserByIdAndUpdate(id, token) {
-  return this.findByIdAndUpdate(id, { token }, { new: true });
+function getUserByIdAndUpdate(_id, token) {
+  return this.updateOne({ _id }, { token });
 }
 
 function getUserByEmail(email) {
   return this.findOne({ email });
 }
 
-export const authModel = mongoose.model("User", userSchema);
+export const authModel = model("User", userSchema);

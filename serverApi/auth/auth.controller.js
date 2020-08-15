@@ -17,9 +17,26 @@ class AuthController {
   }
 
   async isAutorizate(req, res, next) {
-    const token = req.headers.Authorization;
+    try {
+      const authToken = req.headers.authorization;
 
-    console.log(token);
+      if (!authToken) {
+        throw new Error("Пользователь не авторизован");
+      }
+
+      const token = authToken.replace("Bearer ", "");
+
+      try {
+        const decoded = jwt.verify(token, process.env.SECRET_KEY);
+        req.user = decoded.id;
+      } catch (err) {
+        throw new Error("Пользователь не авторизован");
+      }
+
+      next();
+    } catch (err) {
+      next(err);
+    }
   }
 
   async registerUser(req, res, next) {
@@ -68,14 +85,21 @@ class AuthController {
       });
 
       await authModel.getUserByIdAndUpdate(user._id, token);
-      
+
       res.status(200).json({ userId: user._id, token });
     } catch (err) {
       next(err);
     }
   }
 
-  async logOutUser() {}
+  async logOutUser(req, res, next) {
+    const id = req.user;
+    const token = "";
+
+    await authModel.getUserByIdAndUpdate(id, token);
+
+    res.status(204).json();
+  }
 
   async passwordHash(pwd) {
     const salt = Number(process.env.SALT_ROUNDS);
