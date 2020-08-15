@@ -1,6 +1,6 @@
-import bcrypt, { hash } from "bcrypt";
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { check, validationResult } from "express-validator";
+import { validationResult } from "express-validator";
 import { authModel } from "./auth.model";
 import { createControllerProxy } from "../helpers/controllerProxy";
 
@@ -14,6 +14,12 @@ class AuthController {
       });
     }
     next();
+  }
+
+  async isAutorizate(req, res, next) {
+    const token = req.headers.Authorization;
+
+    console.log(token);
   }
 
   async registerUser(req, res, next) {
@@ -57,17 +63,19 @@ class AuthController {
         throw new Error("Некорректный пароль");
       }
 
-      console.log(user._id);
-
       const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
         expiresIn: "1h",
       });
 
-      console.log(token);
+      await authModel.getUserByIdAndUpdate(user._id, token);
+      
+      res.status(200).json({ userId: user._id, token });
     } catch (err) {
       next(err);
     }
   }
+
+  async logOutUser() {}
 
   async passwordHash(pwd) {
     const salt = Number(process.env.SALT_ROUNDS);
