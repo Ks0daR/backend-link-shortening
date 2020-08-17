@@ -1,5 +1,6 @@
 import { createControllerProxy } from "../helpers/controllerProxy";
 import { linksModel } from "./links.model";
+import shordId from "shortid";
 
 class LinksController {
   async getAllLinks(req, res, next) {
@@ -10,18 +11,39 @@ class LinksController {
 
       res.status(200).json(links);
     } catch (err) {
-      throw new Error(err);
+      next(err);
     }
   }
 
   async createNewLink(req, res, next) {
     try {
-      const { name, from } = req.body;
+      const { from, user } = req.body;
+      const serverLink = process.env.SERVER_URL;
 
-      console.log(name);
-      console.log(from);
+      const code = shordId.generate();
+
+      const shortLink = serverLink + "/to/" + code;
+
+      const createdLink = await linksModel.addNewLink(
+        from,
+        shortLink,
+        code,
+        user
+      );
+
+      res.status(201).json(createdLink);
     } catch (err) {
-      throw new Error(err);
+      next(err);
+    }
+  }
+  async getLinkById(req, res, next) {
+    try {
+      const linkId = req.params.id;
+      const link = await linksModel.getLinkById(linkId);
+
+      res.status(200).json(link);
+    } catch (err) {
+      next(err);
     }
   }
 }
