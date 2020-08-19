@@ -1,0 +1,33 @@
+.navBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem;
+  background: blue;
+}
+
+.navLink {
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+.navLink:hover {
+  color: yellow;
+}
+
+.listElement {
+  list-style: none;
+}
+
+.main {
+  margin-top: 50px;
+  padding: 1rem;
+}
