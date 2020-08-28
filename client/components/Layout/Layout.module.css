@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 50px;
+  height: 70px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -15,7 +15,7 @@
   color: #fff;
   text-transform: uppercase;
   text-decoration: none;
-  padding: 1rem;
+  padding: 1.5rem;
   font-size: 1.5rem;
 }
 

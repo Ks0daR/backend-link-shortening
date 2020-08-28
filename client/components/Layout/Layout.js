@@ -11,7 +11,7 @@ export default function Layout({ title = "Название", children }) {
 
       <header>
         <nav className={styles.navBar}>
-        <li className={styles.listElement}>
+          <li className={styles.listElement}>
             <Link href="/">
               <a className={styles.navLink}>Домашняя страница</a>
             </Link>
