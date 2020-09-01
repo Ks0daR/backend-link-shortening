@@ -5,10 +5,10 @@ import { linksController } from "./links.controller";
 
 const router = Router();
 
-router.get("/",  linksController.getAllLinks);  
-// вернуть authController.isAutorizate,
-router.get("/:id",  linksController.getLinkById);
+router.get("/", authController.isAutorizate, linksController.getAllLinks);
 
-router.post("/",  linksController.createNewLink);
+router.get("/:id", authController.isAutorizate, linksController.getLinkById);
+
+router.post("/", authController.isAutorizate, linksController.createNewLink);
 
 export const linksRouter = router;
