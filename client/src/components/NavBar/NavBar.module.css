@@ -1,0 +1,23 @@
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: gray;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.navItem {
+  text-transform: uppercase;
+  color: #fff;
+  padding: 2rem;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.navItem:hover {
+  color: yellow;
+}
