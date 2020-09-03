@@ -12,6 +12,9 @@ export const NavBar = () => {
         <NavLink className={styles.navItem} to="/links">
           Все ссылки
         </NavLink>
+        <NavLink className={styles.navItem} to="/auth">
+          Авторизация
+        </NavLink>
       </ul>
     </nav>
   );
