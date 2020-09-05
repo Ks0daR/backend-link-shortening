@@ -41,30 +41,48 @@ const AuthFrom = () => {
 
   return (
     <div className={styles.container}>
-      <div>
-        <label>
-          Email:
-          <input
+      <h2>Авторизация</h2>
+      <div className={styles.inputForm}>
+        <div className={styles.inputContainer} >
+          <label  className={styles.formLabel} htmlFor="email">
+            Email:
+          </label>
+          <input          
+            className={styles.input}
+            id="email"
             type="text"
             name="email"
             value={email}
             onChange={handleInput}
           />
-        </label>
-        <label>
-          Password:
+        </div>
+        <div className={styles.inputContainer}>
+          <label className={styles.formLabel} htmlFor="pwd">
+            Password:
+          </label>
           <input
+            className={styles.input}
             type="password"
+            id="pwd"
             name="password"
             value={password}
             onChange={handleInput}
           />
-        </label>
+        </div>
       </div>
-      <button name="register" onClick={registrationHandler}>
+
+      <button
+        className={styles.btnSubmit}
+        name="register"
+        onClick={registrationHandler}
+      >
         Регистрация
       </button>
-      <button name="authorisation" onClick={logInHandler}>
+      <button
+        className={styles.btnSubmit}
+        name="authorisation"
+        onClick={logInHandler}
+      >
         Войти
       </button>
     </div>
