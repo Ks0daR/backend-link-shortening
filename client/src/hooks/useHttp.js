@@ -8,12 +8,9 @@ export const useHttp = () => {
     async (url, method = "GET", body = null, headers = {}) => {
       setLoading(true);
       try {
-          const response = await fetch(url, { method, body, headers });
-          const data = await response.json();
-          debugger;
 
-        console.log(response);
-        console.log(data);
+        const response = await fetch(url, { method, body, headers });
+        const data = await response.json();
 
         if (!response.ok) {
           throw new Error(data.message || "Что то пошло не так");

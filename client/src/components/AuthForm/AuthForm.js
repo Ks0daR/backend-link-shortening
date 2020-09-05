@@ -3,11 +3,12 @@ import styles from "./AuthForm.module.css";
 import { useHttp } from "../../hooks/useHttp";
 
 const AuthFrom = () => {
-  const serverLink = "/auth/register";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const { loading, error, request } = useHttp();
+
+  const headers = { "Content-Type": "application/json" };
 
   const handleInput = ({ target }) => {
     const { name, value } = target;
@@ -16,19 +17,31 @@ const AuthFrom = () => {
 
   const registrationHandler = async (evt) => {
     evt.preventDefault();
+    const credentials = JSON.stringify({ email, password });
+
     try {
       const data = await request(
-        serverLink,
+        "/auth/register",
         "POST",
-        { email, password },
-        { "Content-type": "application/json" }
+        credentials,
+        headers
       );
       console.log(data);
     } catch (e) {}
   };
+  const logInHandler = async (evt) => {
+    evt.preventDefault();
+    const credentials = JSON.stringify({ email, password });
+
+    try {
+      const data = await request("/auth/login", "POST", credentials, headers);
+      console.log(data);
+    } catch (e) {}
+  };
+
   return (
     <div className={styles.container}>
-      <form>
+      <div>
         <label>
           Email:
           <input
@@ -47,11 +60,13 @@ const AuthFrom = () => {
             onChange={handleInput}
           />
         </label>
-        <button name="register" onClick={registrationHandler}>
-          Регистрация
-        </button>
-        <button name="authorisation">Войти</button>
-      </form>
+      </div>
+      <button name="register" onClick={registrationHandler}>
+        Регистрация
+      </button>
+      <button name="authorisation" onClick={logInHandler}>
+        Войти
+      </button>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import { createControllerProxy } from "../helpers/controllerProxy";
 
 class AuthController {
   validateCredential(req, res, next) {
+    console.log(req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -21,7 +22,7 @@ class AuthController {
       const authToken = req.headers.authorization;
 
       if (!authToken) {
-        throw new Error("Пользователь не авторизован");
+        res.status(401).json("Пользователь не авторизован")
       }
 
       const token = authToken.replace("Bearer ", "");
@@ -30,7 +31,7 @@ class AuthController {
         const decoded = jwt.verify(token, process.env.SECRET_KEY);
         req.user = decoded.id;
       } catch (err) {
-        throw new Error("Пользователь не авторизован");
+        res.status(401).json("Пользователь не авторизован")
       }
 
       next();
@@ -46,7 +47,7 @@ class AuthController {
       const uniqueUser = await authModel.getUserByEmail(email);
 
       if (uniqueUser) {
-        throw new Error("Такой пользователь уже существует");
+        res.status(409).json("Такой пользователь уже существует");
       }
 
       const passwordHashed = await this.passwordHash(password);
