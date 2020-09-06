@@ -44,7 +44,7 @@ const AuthFrom = () => {
       <h2>Авторизация</h2>
       <div className={styles.inputForm}>
         <div className={styles.inputContainer} >
-          <label  className={styles.formLabel} htmlFor="email">
+          <label  className={email ? styles.formLabelActive : styles.formLabel} htmlFor="email">
             Email:
           </label>
           <input          
@@ -52,12 +52,13 @@ const AuthFrom = () => {
             id="email"
             type="text"
             name="email"
+            autoComplete='off'
             value={email}
             onChange={handleInput}
           />
         </div>
         <div className={styles.inputContainer}>
-          <label className={styles.formLabel} htmlFor="pwd">
+          <label className={password ? styles.formLabelActive : styles.formLabel} htmlFor="pwd">
             Password:
           </label>
           <input
@@ -72,7 +73,7 @@ const AuthFrom = () => {
       </div>
 
       <button
-        className={styles.btnSubmit}
+        className={styles.btnSubmitRegister}
         name="register"
         onClick={registrationHandler}
       >
