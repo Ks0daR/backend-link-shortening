@@ -6,7 +6,7 @@
 
 .container {
   display: flex;
-  justify-self: center;
+  justify-content: center;
   align-items: center;
   min-height: 100vh;
   animation: animateBg 5s linear infinite;
@@ -25,9 +25,6 @@
   position: relative;
   width: 120px;
   height: 120px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .loaderItem {
@@ -49,14 +46,14 @@
   box-shadow: 0 0 10px #00ff0a, 0 0 20px #00ff0a, 0 0 40px #00ff0a,
     0 0 60px #00ff0a, 0 0 80px #00ff0a, 0 0 100px #00ff0a;
   animation: animate 2s linear infinite;
-  animation-delay: calc(1s * var(--i));
+  animation-delay: calc(0.1s * var(--i));
 }
 
 @keyframes animate {
   100% {
     transform: scale(1);
   }
-  
+
   0% {
     transform: scale(0);
   }

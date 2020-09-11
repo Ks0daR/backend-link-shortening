@@ -4,17 +4,24 @@ import { Layout } from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage";
 import routes from "./routes";
 import AuthPage from "./pages/AuthPage/AuthPage";
-import Loader from "./components/Loader/Loader";
+import { AuthContext } from "./context/AuthContext";
+import { useAuth } from "./hooks/useAuth";
 
 function App() {
+  const { login, logout, jwtToken, userId } = useAuth();
+  const isAuthorized = !!jwtToken;
   return (
-    <Layout>
-      <Switch>
-        <Route path="/" exact component={HomePage} />
-        <Route path="/auth" exact component={AuthPage} />
-        <Redirect to="/" />
-      </Switch>
-    </Layout>
+    <AuthContext.Provider
+      value={{ login, logout, jwtToken, userId, isAuthorized }}
+    >
+      <Layout>
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/auth" exact component={AuthPage} />
+          <Redirect to="/" />
+        </Switch>
+      </Layout>
+    </AuthContext.Provider>
   );
 }
 
