@@ -36,7 +36,8 @@ export class ShortLinkServer {
       });
       console.log("Success connect to DB");
     } catch (err) {
-      throw new Error("Error connect to db");
+      console.log("Error connect to db");
+      process.exit(1);
     }
   }
 
