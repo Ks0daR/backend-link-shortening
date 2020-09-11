@@ -59,7 +59,7 @@ class AuthController {
 
       await authModel.addNewUser(newUser);
 
-      res.status(201).json(newUser);
+      res.status(201).json("Пользователь создан");
     } catch (err) {
       next(err);
     }

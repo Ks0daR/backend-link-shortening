@@ -4,6 +4,7 @@ import { Layout } from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage";
 import routes from "./routes";
 import AuthPage from "./pages/AuthPage/AuthPage";
+import Loader from "./components/Loader/Loader";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/auth" exact component={AuthPage} />
+        <Redirect to="/" />
       </Switch>
     </Layout>
   );
