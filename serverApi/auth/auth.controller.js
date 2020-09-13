@@ -22,7 +22,7 @@ class AuthController {
       const authToken = req.headers.authorization;
 
       if (!authToken) {
-        res.status(401).json("Пользователь не авторизован")
+        res.status(401).json("Пользователь не авторизован");
       }
 
       const token = authToken.replace("Bearer ", "");
@@ -30,8 +30,9 @@ class AuthController {
       try {
         const decoded = jwt.verify(token, process.env.SECRET_KEY);
         req.user = decoded.id;
+
       } catch (err) {
-        res.status(401).json("Пользователь не авторизован")
+        res.status(401).json("Пользователь не авторизован");
       }
 
       next();

@@ -9,7 +9,7 @@ const AuthFrom = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { loading, error, request } = useHttp();
+  const { loading, request } = useHttp();
 
   const headers = { "Content-Type": "application/json" };
 
@@ -17,8 +17,6 @@ const AuthFrom = () => {
     const { name, value } = target;
     name === "email" ? setEmail(value) : setPassword(value);
   };
-
-  console.log(auth);
 
   const registrationHandler = async () => {
     const credentials = JSON.stringify({ email, password });

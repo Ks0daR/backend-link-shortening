@@ -1,7 +1,8 @@
 import React from "react";
+import Links from "../../components/Links";
 
 const LinksPage = () => {
-  return <h1>Links Page</h1>;
+  return <Links />;
 };
 
 export default LinksPage;

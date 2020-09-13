@@ -3,7 +3,7 @@ import mongoose, { Schema, model } from "mongoose";
 const { ObjectId } = mongoose.Types;
 
 const schema = new Schema({
-  from: { type: String, required: true },
+  from: { type: String, required: true, unique: true },
   shortLink: { type: String, required: true, unique: true },
   code: { type: String, required: true, unique: true },
   date: { type: Date, default: Date.now },

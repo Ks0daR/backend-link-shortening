@@ -17,7 +17,9 @@ class LinksController {
 
   async createNewLink(req, res, next) {
     try {
-      const { from, user } = req.body;
+      const user = req.user;
+      const { from } = req.body;
+
       const serverLink = process.env.SERVER_URL;
 
       const code = shordId.generate();
