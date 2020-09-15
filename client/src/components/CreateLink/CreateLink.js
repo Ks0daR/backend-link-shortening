@@ -10,8 +10,6 @@ const CreateLink = () => {
 
   const auth = useAuth(AuthContext);
 
-  console.log(auth.jwtToken);
-
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${auth.jwtToken}`,
@@ -34,7 +32,7 @@ const CreateLink = () => {
   return (
     <div className={styles.container}>
       <h1>CreateLink</h1>
-      <form onClick={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label>
           <input
             type="text"
