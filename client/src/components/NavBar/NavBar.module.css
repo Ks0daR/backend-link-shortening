@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  padding-right: 50px;
 }
 
 .navItem {
@@ -20,4 +21,13 @@
 
 .navItem:hover {
   color: yellow;
+}
+
+.navButton {
+  padding: 10px;
+  border-radius: 30px;
+  font-size: 22px;
+  border: none;
+  background-color: transparent;
+  color: #fff ;
 }

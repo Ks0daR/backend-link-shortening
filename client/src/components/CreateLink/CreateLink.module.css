@@ -1,4 +1,12 @@
 .container {
-  margin-top: 70px;
-  padding: 1rem;
+  margin: 150px auto 0;
+  width: 50vw;
+  height: 50vh;
+  background: #fff;
+  border-radius: 30px;
+  text-align: center;
+}
+
+.generateLink{
+  margin-top: 50px;
 }

@@ -5,17 +5,19 @@ import { AuthContext } from "../../context/AuthContext";
 import styles from "./CreateLink.module.css";
 
 const CreateLink = () => {
-  const [link, setLink] = useState("");
   const { request } = useHttp();
-
   const auth = useAuth(AuthContext);
+
+  const [link, setLink] = useState("");
+  const [genLink, setShortLink] = useState("");
 
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${auth.jwtToken}`,
   };
+
   const serverUrl = "/links/";
-  const shortLink = JSON.stringify({ from: link });
+  const serverLink = JSON.stringify({ from: link });
 
   const handleInput = ({ target: { value } }) => {
     setLink(value);
@@ -24,14 +26,14 @@ const CreateLink = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await request(serverUrl, "POST", shortLink, headers);
-      console.log(response);
+      const response = await request(serverUrl, "POST", serverLink, headers);
+      setShortLink(response);
     } catch (e) {}
   };
 
   return (
     <div className={styles.container}>
-      <h1>CreateLink</h1>
+      <h1 className={styles.title}>Создать короткую ссылку!</h1>
       <form onSubmit={handleSubmit}>
         <label>
           <input
@@ -43,6 +45,14 @@ const CreateLink = () => {
         </label>
         <button>Сократить!</button>
       </form>
+      {genLink && (
+        <div className={styles.generateLink}>
+          <h2>Поздравляем, ваша короткая ссылка создана!</h2>
+          <a rel="noopener noreferrer" href={genLink.shortLink}>
+            {genLink.shortLink}
+          </a>
+        </div>
+      )}
     </div>
   );
 };

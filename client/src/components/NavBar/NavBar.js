@@ -20,7 +20,7 @@ export const NavBar = () => {
           <NavLink className={styles.navItem} to="/createLink">
             Создать ссылку
           </NavLink>
-          <button onClick={handleClick}>Выйти</button>
+          <button className={styles.navButton} onClick={handleClick}>Выйти</button>
         </ul>
       </nav>
     );
