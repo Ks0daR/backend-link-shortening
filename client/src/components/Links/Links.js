@@ -36,13 +36,15 @@ const Links = () => {
       {links ? (
         links.map((link) => (
           <div key={link.code} className={styles.card}>
-            <h2>
-              Откуда: <p>{link.from}</p>
+            <h2 className={styles.title}>
+              Откуда: 
             </h2>
-            <h4>
-              Короткая ссылка: <p>{link.shortLink}</p>
+            <p>{link.from}</p>
+            <h4 className={styles.title}>
+              Короткая ссылка: 
             </h4>
-            <span>{link.clicks}</span>
+            <p>{link.shortLink}</p>
+            <span>Клики по ссылке {link.clicks}</span>
           </div>
         ))
       ) : (
