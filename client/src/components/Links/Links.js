@@ -36,13 +36,9 @@ const Links = () => {
       {links ? (
         links.map((link) => (
           <div key={link.code} className={styles.card}>
-            <h2 className={styles.title}>
-              Откуда: 
-            </h2>
+            <h2 className={styles.title}>Откуда:</h2>
             <p>{link.from}</p>
-            <h4 className={styles.title}>
-              Короткая ссылка: 
-            </h4>
+            <h4 className={styles.title}>Короткая ссылка:</h4>
             <p>{link.shortLink}</p>
             <span>Клики по ссылке {link.clicks}</span>
           </div>

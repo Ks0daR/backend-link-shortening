@@ -29,25 +29,29 @@ const CreateLink = () => {
       const response = await request(serverUrl, "POST", serverLink, headers);
       setShortLink(response);
     } catch (e) {}
+    setLink("");
   };
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Создать короткую ссылку!</h1>
-      <form onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <label>
           <input
+            className={styles.input}
             type="text"
             placeholder="Вставьте ссылку"
             value={link}
             onChange={handleInput}
           />
         </label>
-        <button>Сократить!</button>
+        <button className={styles.button}>Сократить!</button>
       </form>
       {genLink && (
         <div className={styles.generateLink}>
-          <h2>Поздравляем, ваша короткая ссылка создана!</h2>
+          <h2 className={styles.title}>
+            Поздравляем, ваша короткая ссылка создана!
+          </h2>
           <a rel="noopener noreferrer" href={genLink.shortLink}>
             {genLink.shortLink}
           </a>

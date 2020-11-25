@@ -1,14 +1,17 @@
 .container {
-  width: 80vw;
+  width: 85vw;
   height: 80vh;
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 30px;
   margin: 100px auto 0;
-  overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .card {
-  padding: 20px;
+  padding: 20px ;
+  margin: 10px 20px 0 20px;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.9);
   width: 25%;
