@@ -22,18 +22,24 @@ class AuthController {
       const authToken = req.headers.authorization;
 
       if (!authToken) {
-        res.status(401).json("Пользователь не авторизован");
+        throw res.status(401).json("Пользователь не авторизован");
       }
 
       const token = authToken.replace("Bearer ", "");
 
-      try {
-        const decoded = jwt.verify(token, process.env.SECRET_KEY);
-        req.user = decoded.id;
+      const decoded = jwt.verify(
+        token,
+        process.env.SECRET_KEY,
+        function (err, decoded) {
+          console.log("1", err);
+          if (err) {
+            throw res.status(401).json(err.name);
+          }
+          return decoded;
+        }
+      );
 
-      } catch (err) {
-        res.status(401).json("Пользователь не авторизован");
-      }
+      req.user = decoded.id;
 
       next();
     } catch (err) {
@@ -48,7 +54,7 @@ class AuthController {
       const uniqueUser = await authModel.getUserByEmail(email);
 
       if (uniqueUser) {
-        res.status(409).json("Такой пользователь уже существует");
+        return res.status(409).json("Такой пользователь уже существует");
       }
 
       const passwordHashed = await this.passwordHash(password);
@@ -60,7 +66,7 @@ class AuthController {
 
       await authModel.addNewUser(newUser);
 
-      res.status(201).json("Пользователь создан");
+      return res.status(201).json("Пользователь создан");
     } catch (err) {
       next(err);
     }
@@ -88,7 +94,7 @@ class AuthController {
 
       await authModel.getUserByIdAndUpdate(user._id, token);
 
-      res.status(200).json({ userId: user._id, token });
+      return res.status(200).json({ userId: user._id, token });
     } catch (err) {
       next(err);
     }
@@ -100,7 +106,7 @@ class AuthController {
 
     await authModel.getUserByIdAndUpdate(id, token);
 
-    res.status(204).json();
+    return res.status(204).json();
   }
 
   async passwordHash(pwd) {

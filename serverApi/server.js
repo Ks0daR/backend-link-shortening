@@ -16,7 +16,7 @@ export class ShortLinkServer {
     this.initMiddleware();
     await this.initDbConnect();
     this.initRoutes();
-    // this.controlError();
+    this.controlError();
     this.startListening();
   }
 
@@ -45,6 +45,12 @@ export class ShortLinkServer {
     this.server.use("/auth", authRouter);
     this.server.use("/links", linksRouter);
     this.server.use("/to", redirectRouter);
+  }
+
+  controlError() {
+    this.server.use((err, req, res, next) => {
+      // console.log(err);
+    });
   }
 
   startListening() {
