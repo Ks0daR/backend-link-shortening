@@ -1,16 +1,14 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import AuthPage from "./pages/AuthPage/AuthPage";
-import LinksPage from "./pages/LinksPage";
-import CreateLink from "./components/CreateLink";
+import HomePage from "./pages/HomePage";
 
 export const useRoutes = (isAuthorized) => {
   if (isAuthorized) {
     return (
       <Switch>
-        <Route path="/links" component={LinksPage} />
-        <Route path="/createLink" component={CreateLink} />
-        <Redirect to="links" />
+        <Route path="/home" component={HomePage} />
+        <Redirect to="/home" />
       </Switch>
     );
   }

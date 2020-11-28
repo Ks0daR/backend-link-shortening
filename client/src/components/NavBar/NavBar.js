@@ -14,18 +14,17 @@ export const NavBar = () => {
     return (
       <nav className={styles.navigation}>
         <ul>
-          <NavLink className={styles.navItem} to="/links">
-            Все ссылки
+          <NavLink className={styles.navItem} to="/home">
+            Ссылки
           </NavLink>
-          <NavLink className={styles.navItem} to="/createLink">
-            Создать ссылку
+          <NavLink className={styles.navItem} onClick={handleClick} to="/auth">
+            Выйти
           </NavLink>
-          <button className={styles.navButton} onClick={handleClick}>Выйти</button>
         </ul>
       </nav>
     );
   }
-  
+
   return (
     <nav className={styles.navigation}>
       <ul>
