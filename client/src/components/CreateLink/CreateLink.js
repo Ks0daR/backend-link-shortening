@@ -47,16 +47,6 @@ const CreateLink = () => {
         </label>
         <button className={styles.button}>Сократить!</button>
       </form>
-      {genLink && (
-        <div className={styles.generateLink}>
-          <h2 className={styles.title}>
-            Поздравляем, ваша короткая ссылка создана!
-          </h2>
-          <a rel="noopener noreferrer" href={genLink.shortLink}>
-            {genLink.shortLink}
-          </a>
-        </div>
-      )}
     </div>
   );
 };

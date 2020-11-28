@@ -43,7 +43,7 @@ const AuthFrom = () => {
     <>
       {loading && <Loader />}
       <div className={styles.container}>
-        <h2>Авторизация</h2>
+        <h2 className={styles.title}>Авторизация</h2>
         <div className={styles.inputForm}>
           <div className={styles.inputContainer}>
             <label

@@ -1,0 +1,7 @@
+.container {
+  margin: 80px auto 0;
+  width: 100vw;
+  height: 60vh;
+  background-image: url("../../img/abstract-background-1024x273.jpg");
+  background-size: cover;
+}
