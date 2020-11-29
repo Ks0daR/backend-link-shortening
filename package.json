@@ -18,7 +18,9 @@
   "scripts": {
     "server": "nodemon ./start.js",
     "dev": "npm start --prefix client",
-    "serv": "concurrently \"npm run server\" \"npm run dev\""
+    "serv": "concurrently \"npm run server\" \"npm run dev\"",
+    "client:install": "npm install --prefix client",
+    "client:build": "npm run build --prefix client"
   },
   "repository": {
     "type": "git",
