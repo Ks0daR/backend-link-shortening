@@ -10,8 +10,12 @@
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
+    "firebase-admin": "^9.4.1",
+    "firebase-functions": "^3.11.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.27",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
     "shortid": "^2.2.15"
   },
   "devDependencies": {},

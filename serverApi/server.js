@@ -3,6 +3,9 @@ import mongoose from "mongoose";
 import { authRouter } from "./auth/auth.router";
 import { linksRouter } from "./links/links.router";
 import { redirectRouter } from "./redirect/redirect.router";
+import userCreated from "../firebase";
+
+console.log(userCreated);
 
 const PORT = process.env.PORT || 8080;
 
