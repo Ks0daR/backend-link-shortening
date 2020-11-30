@@ -21,6 +21,7 @@
   "devDependencies": {},
   "scripts": {
     "server": "nodemon ./start.js",
+    "start": "node ./start.js",
     "dev": "npm start --prefix client",
     "serv": "concurrently \"npm run server\" \"npm run dev\"",
     "client:install": "npm install --prefix client",
