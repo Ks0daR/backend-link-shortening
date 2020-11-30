@@ -88,9 +88,7 @@ class AuthController {
         throw new Error("Некорректный пароль");
       }
 
-      const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
-        expiresIn: "1h",
-      });
+      const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY);
 
       await authModel.getUserByIdAndUpdate(user._id, token);
 
