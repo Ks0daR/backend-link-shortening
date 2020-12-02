@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import { authRouter } from "./auth/auth.router";
 import { linksRouter } from "./links/links.router";
 import { redirectRouter } from "./redirect/redirect.router";
+import cors from "cors";
 
 const PORT = process.env.PORT || 8080;
 
@@ -26,6 +27,7 @@ export class ShortLinkServer {
 
   initMiddleware() {
     this.server.use(express.json());
+    this.server.use(cors());
   }
 
   async initDbConnect() {
