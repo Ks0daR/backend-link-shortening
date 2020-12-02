@@ -3,17 +3,8 @@ import mongoose from "mongoose";
 import { authRouter } from "./auth/auth.router";
 import { linksRouter } from "./links/links.router";
 import { redirectRouter } from "./redirect/redirect.router";
-import userCreated from "../firebase";
-import cors from "cors";
-
-console.log(userCreated);
 
 const PORT = process.env.PORT || 8080;
-
-const corsOptions = {
-  origin: "https://shortenlink-dd415.web.app/",
-  optionsSuccessStatus: 200,
-};
 
 export class ShortLinkServer {
   constructor() {
@@ -51,7 +42,6 @@ export class ShortLinkServer {
   }
 
   initRoutes() {
-    this.server.use(cors(corsOptions));
     this.server.use("/auth", authRouter);
     this.server.use("/links", linksRouter);
     this.server.use("/to", redirectRouter);

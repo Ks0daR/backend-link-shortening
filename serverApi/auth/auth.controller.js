@@ -92,6 +92,12 @@ class AuthController {
 
       await authModel.getUserByIdAndUpdate(user._id, token);
 
+      console.log(res.req.headers["Access-Control-Allow-Origin"] =
+      "https://shortenlink-dd415.web.app/");
+
+
+      console.log(res.req.headers);
+
       return res.status(200).json({ userId: user._id, token });
     } catch (err) {
       next(err);
