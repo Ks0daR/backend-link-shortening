@@ -20,8 +20,12 @@ function addNewLink(from, shortLink, code, owner) {
   return this.create({ from, shortLink, code, owner });
 }
 
-function getAllLinks(id) {
-  return this.find({ owner: id });
+function getAllLinks(id, pageNumber = 1, perPage) {
+  return this.find({ owner: id })
+    .skip((pageNumber - 1) * perPage)
+    .limit(perPage);
+
+  // .limit(perPage)
 }
 
 function getLinkById(_id) {

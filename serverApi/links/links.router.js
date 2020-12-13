@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { authModel } from "../auth/auth.model";
 import { authController } from "../auth/auth.controller";
 import { linksController } from "./links.controller";
 

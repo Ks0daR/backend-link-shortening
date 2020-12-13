@@ -7,7 +7,11 @@ class LinksController {
     try {
       const userId = req.user;
 
-      const links = await linksModel.getAllLinks(userId);
+      console.log('123', userId);
+      
+      const links = await linksModel.getAllLinks(userId, 2, 2);
+      
+      console.log('123', links);
 
       return res.status(200).json(links);
     } catch (err) {
@@ -33,7 +37,7 @@ class LinksController {
         user
       );
 
-     return res.status(201).json(createdLink);
+      return res.status(201).json(createdLink);
     } catch (err) {
       next(err);
     }
@@ -43,7 +47,7 @@ class LinksController {
       const linkId = req.params.id;
       const link = await linksModel.getLinkById(linkId);
 
-     return res.status(200).json(link);
+      return res.status(200).json(link);
     } catch (err) {
       next(err);
     }

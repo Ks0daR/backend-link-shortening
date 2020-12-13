@@ -31,7 +31,6 @@ class AuthController {
         token,
         process.env.SECRET_KEY,
         function (err, decoded) {
-          console.log("1", err);
           if (err) {
             throw res.status(401).json(err.name);
           }
